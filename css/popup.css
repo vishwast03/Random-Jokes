@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    font-size: 14px;
+    width: 350px;
+    height: 400px;
+    max-height: 400px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #dadada;
+    font-size: 20px;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+#header img {
+    width: 40px;
+}
+
+#joke-text {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#joke-text p {
+    padding: 10px;
+    font-size: larger;
+    text-align: center;
+}
+
+#next-btn {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background-color: #ffc107;
+    border: none;
+    outline:none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    margin-top: 7px;
+    justify-self: flex-end;
+}
+
+#next-btn:hover {
+    background-color: #f8aa00;
+}
+
+.loading {
+    width:50px;
+    height:24px;
+    background: 
+        radial-gradient(circle closest-side,currentColor 90%,#0000) 0%   50%,
+        radial-gradient(circle closest-side,currentColor 90%,#0000) 50%  50%,
+        radial-gradient(circle closest-side,currentColor 90%,#0000) 100% 50%;
+    color: #ffc107;
+    background-size:calc(100%/3) 12px;
+    background-repeat: no-repeat;
+    animation:d3 1s infinite linear;
+}
+@keyframes d3 {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
+}
