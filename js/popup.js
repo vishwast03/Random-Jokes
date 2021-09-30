@@ -1,5 +1,7 @@
 const jokeSect = document.getElementById('joke-text');
 const nextBtn = document.getElementById('next-btn');
+const category = document.getElementById('category');
+const changeBtn = document.getElementById('category-btn');
 
 function displayTwoPart(data) {
     const setup = `<p>${data.setup}</p>`;
@@ -14,17 +16,32 @@ function displaySingle(data) {
 }
 
 function getData() {
-    fetch('https://v2.jokeapi.dev/joke/any')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if(data.type == "twopart") {
-                displayTwoPart(data);
-            }
-            else {
-                displaySingle(data);
-            }
-        });
+    chrome.storage.local.get(['random-jokes'], function(result) {
+        let fetchCategory;
+        if(Object.entries(result).length == 0) {
+            fetchCategory = "any";
+        }
+        else {
+            fetchCategory = result['random-jokes'];
+            category.value = fetchCategory;
+        }
+        fetch(`https://v2.jokeapi.dev/joke/${fetchCategory}`)
+            .then(response => response.json())
+            .then(data => {
+                if(data.type == "twopart") {
+                    displayTwoPart(data);
+                }
+                else {
+                    displaySingle(data);
+                }
+            });
+    });
+}
+
+function setCategory() {
+    chrome.storage.local.set({'random-jokes': category.value}, function() {
+        console.log('value is set to ' +category.value);
+    });
 }
 
 getData();
@@ -32,4 +49,9 @@ getData();
 nextBtn.addEventListener('click', () => {
     jokeSect.innerHTML = `<div class="loading"></div>`;
     getData();
+});
+
+changeBtn.addEventListener('click', () => {
+    setCategory();
+    nextBtn.click();
 });

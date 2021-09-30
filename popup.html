@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/popup.css">
     <title>Random Jokes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="header">
         <img src="./images/logo150.png" alt="logo">
         Random Jokes
+    </div>
+    <div id="category-sect">
+        <select name="category" id="category">
+            <option value="any" selected>Random</option>
+            <option value="misc">Misc</option>
+            <option value="programming">Programming</option>
+            <option value="dark">Dark</option>
+            <option value="pun">Pun</option>
+            <option value="spooky">Spooky</option>
+            <option value="christmas">Christmas</option>
+        </select>
+        <button id="category-btn">Change</button>
     </div>
     <div id="joke-text">
         <!--Insert joke text here-->
